@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: 220 40% 13%;
+  --gold: 45 100% 50%;
+  --accent: 280 100% 60%;
+  --accent: 280 100% 60%;
+  --text-primary: 220 40% 98%;
+  --text-secondary: 220 40% 70%;
+}
+
+/* Background Patterns */
+.pattern-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Enhanced Gradients */
+.bg-gradient-dark {
+  background: linear-gradient(
+    135deg,
+    hsl(220 40% 13%),
+    hsl(220 40% 10%)
+  );
+}
+
+.bg-gradient-card {
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(
+    to right,
+    hsl(45 100% 50%),
+    hsl(45 100% 45%)
+  );
+}
+
+/* Form Styles */
+.form-input-focus {
+  @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--gold))]/20 focus:border-[hsl(var(--gold))]/30;
+}
+
+.form-input-error {
+  @apply border-red-500/50 focus:ring-red-500/20;
+}
+
+.form-input-success {
+  @apply border-green-500/50 focus:ring-green-500/20;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:bg-[hsl(var(--gold))]/90 
+    active:bg-[hsl(var(--gold))]/80 disabled:opacity-50 disabled:cursor-not-allowed transition-base;
+}
+
+.btn-secondary {
+  @apply bg-white/10 text-white hover:bg-white/20 
+    active:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-base;
+}
+
+.btn-outline {
+  @apply border-2 border-[hsl(var(--gold))] text-[hsl(var(--gold))] hover:bg-[hsl(var(--gold))]/10 
+    active:bg-[hsl(var(--gold))]/20 disabled:opacity-50 disabled:cursor-not-allowed transition-base;
+}
+
+/* Transitions */
+.transition-base {
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Typography Scale */
+@layer base {
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter;
+  }
+
+  /* Mobile Typography */
+  @media (max-width: 768px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  /* Font Weights */
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+
+  /* Line Heights */
+  .leading-tight { line-height: 1.2; }
+  .leading-snug { line-height: 1.375; }
+  .leading-normal { line-height: 1.5; }
+  .leading-relaxed { line-height: 1.625; }
+  .leading-loose { line-height: 2; }
+}
+
+@layer base {
+  body {
+    @apply bg-[hsl(var(--navy))] text-white font-sans antialiased;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  /* Enhanced gradients */
+  .bg-gradient-dark {
+    background: linear-gradient(to bottom right, hsl(220 40% 13%), hsl(220 40% 10%));
+  }
+
+  .bg-gradient-card {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(to right, hsl(45 100% 50%), hsl(45 100% 45%));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Markdown content styling */
+.prose {
+  color: hsl(var(--text-primary));
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: white;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose h1 {
+  font-size: 2.25em;
+}
+
+.prose h2 {
+  font-size: 1.875em;
+}
+
+.prose h3 {
+  font-size: 1.5em;
+}
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  color: hsl(var(--text-secondary));
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+  color: hsl(var(--text-secondary));
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose code {
+  color: hsl(var(--gold));
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+}
+
+.prose pre {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid hsl(var(--gold));
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: hsl(var(--text-secondary));
+  font-style: italic;
+}

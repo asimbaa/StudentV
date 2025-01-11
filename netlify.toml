@@ -1,0 +1,43 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions" 
+
+[build.environment]
+  NODE_VERSION = "18"
+  OPENAI_API_KEY = "${OPENAI_API_KEY}"
+  OPENAI_ORG_ID = "${OPENAI_ORG_ID}"
+  VITE_API_URL = "/.netlify/functions/chat"
+  VITE_ENABLE_STREAMING = "false"
+  VITE_ENABLE_DEBUG_LOGGING = "false"
+
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/edge-functions/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Max-Age = "86400"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept"
+    Content-Security-Policy = "default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data:; worker-src 'self' blob:;"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
