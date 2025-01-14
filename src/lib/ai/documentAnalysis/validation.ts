@@ -1,4 +1,3 @@
-
 import { type DocumentAnalysisResult, type DocumentMetadata, type DocumentType } from './types';
 import { DOCUMENT_TYPES } from './documentTypes'; 
 
